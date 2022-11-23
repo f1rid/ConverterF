@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js"></script>
+</head>
+<body>
+    <div class="root">
+        <header>
+            <img src="images/logo.png" alt="" class="logo">
+            <nav class="nav-items">
+                <a href="#" class="nav-item nav-item-active">БАНК</a>
+                <a href="#" class="nav-item">БИЗНЕС</a>
+                <a href="#" class="nav-item">ИНВЕСТИЦИИ</a>
+                <a href="#" class="nav-item">СТРАХОВАНИЕ</a>
+                <a href="#" class="nav-item">МОБАЙЛ</a>
+                <a href="#" class="nav-item">ПУТЕШЕСТВИЯ</a>
+                <a href="#" class="nav-item">РАЗВЛЕЧЕНИЯ</a>
+            </nav>
+            <div class="login">
+                <a href="#">ВОЙТИ</a>
+            </div>
+        </header>
+        <div class="content">
+            <h2 class="title">Конвертер валют онлайн</h2>
+            <div class="converter">
+                <div class="converter-from">
+                    <p class="converter-para">У меня есть</p>
+                    <div class="currency-list" id="currency-from">
+                        <button class="currency currency-active">RUB</button>
+                        <button class="currency">USD</button>
+                        <button class="currency">EUR</button>
+                        <button class="currency">GBP</button>
+                    </div>
+                    <div class="converter-result">
+                        <input type="text" class="converter-input" id="converter-from" value="1">
+                        <p class="currency-info" id="currency-info-from"></p>
+                    </div>
+                </div>
+                <div class="converter-to">
+                    <p class="converter-para">Хочу приобрести</p>
+                    <div class="currency-list" id="currency-to">
+                        <button class="currency">RUB</button>
+                        <button class="currency currency-active">USD</button>
+                        <button class="currency">EUR</button>
+                        <button class="currency">GBP</button>
+                    </div>
+                    <div class="converter-result">
+                        <input type="text" class="converter-input" id="converter-to">
+                        <p class="currency-info" id="currency-info-to"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

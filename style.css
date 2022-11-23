@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Roboto';
+    font-style: normal;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.root {
+    height: 100%;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 100px;
+    background: #F5F5F6;
+}
+
+.logo {
+    width: 90px;
+}
+
+.nav-item {
+    margin-right: 10px;
+    font-weight: 500;
+    font-size: 0.8em;
+    color: #959BA4;
+}
+
+.nav-item-active {
+    color: #000;
+}
+
+.login {
+    padding: 10px;
+    font-weight: 500;
+    font-size: 0.8em;
+    background-color: #fff;
+}
+
+.login a {
+    color: #000;
+}
+
+
+.content {
+    margin: 56px auto 0;
+    width: 70%;
+}
+
+.title {
+    font-weight: 700;
+    font-size: 2.2em;
+}
+
+.converter {
+    margin-top: 35px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.converter-from, .converter-to {
+    width: 45%;
+}
+
+.converter-para {
+    color: #9F9F9F;
+}
+
+.currency-list {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #E5E5E5;
+    border-radius: 3px;
+}
+
+.currency {
+    width: 100%;
+    padding: 10px 25px;
+    border: none;
+    border-right: 1px solid #E5E5E5;
+    background: none;
+    font-size: 0.8em;
+    color: #C6C6C6;
+}
+
+.currency:last-child {
+    border: none;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.currency:first-child {
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;    
+}
+
+.currency-active {
+    color: #fff;
+    background-color: #833AE0;
+}
+
+.converter-result {
+    margin-top: 20px;
+    padding: 10px 14px;
+    border: 1px solid #E5E5E5;
+    border-radius: 3px;
+}
+
+.converter-input[type='text'] {
+    width: 80%;
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid #E5E5E5;
+    outline: none;
+    font-size: 2.2em;
+    font-weight: 700;
+}
+
+.currency-info {
+    margin-top: 30px;
+    font-size: 0.8em;
+    color: #C6C6C6;
+}
+
+@media (max-width: 992px) {
+    header {
+        position: relative;
+        padding: 8px 10px;
+        font-size: 0.8em;
+    }
+
+    .logo {
+        width: 50px;
+    }
+
+    .nav-items {
+        position: absolute;
+        top: 120%;
+    }
+
+    .content {
+        font-size: 0.8em;
+    }
+
+    .converter {
+        flex-direction: column;
+    }
+
+    .converter-from, .converter-to {
+        width: 100%;
+    }
+
+    .converter-to {
+        margin-top: 30px;
+    }
+}
