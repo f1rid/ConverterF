@@ -1,57 +1,27 @@
 function fixAmount(val) {
     let tmp = val.split(' ').join('');
 
-    // 0-9 kimi, vergul, noqte olmayanlari bosa cevir
     tmp = tmp.replace(/[^0-9\,\.]/g, '');
-
-    // vergulu noqteye cevir
     tmp = tmp.replace(/\,/g, '.');
-
-    tmp = tmp.split('');
+    tmp = tmp.replace(/(\..*)\./g, '$1');
+    tmp = tmp.split('.');
     
-    for (let i = 0, dotOccured = false; i < tmp.length; ++i) {
-        let ch = tmp[i];
-
-        if (ch == '.') {
-            if (!dotOccured) {
-                dotOccured = true;
-            } else {
-                tmp[i] = '';
-            }
-        }
-    }
-    
-    let new_value = [];
-    let counter = 1;
-    
-    let dotI = tmp.indexOf('.');
-    let endI = tmp.length - 1;
-    let mainI = 0;
-    
-    if (dotI >= 0) {
-        let j = dotI + 4 > endI ? endI : dotI + 4;
-        while (j >= dotI) {
-            new_value[mainI++] = tmp[j--]; 
-        }
-    }
-                
-    let i = dotI < 0 ? endI : dotI - 1;
-    while (i >= 0) {
-        let ch = tmp[i];
-
-        new_value[mainI++] = ch;
-
-        if (counter == 3) {
-            new_value[mainI++] = ' ';
-            counter = 1;
-        } else {
-            ++counter;
-        }
-
-        --i;
+    let match = tmp[0].split('').reverse().join('').match(/.{1,3}/g);
+    if (match != null) {
+        tmp[0] = match.join(' ').split('').reverse().join('');
     }
 
-    return new_value.reverse().join('').trim();
+    if (tmp[1] != undefined) {
+        tmp[1] = tmp[1].slice(0, 4);
+    }
+    
+    if (tmp[1] != undefined && tmp[1] != '0000') {
+        tmp = tmp.join('.');
+    } else {
+        tmp = tmp[0];
+    }
+
+    return tmp.trim();
 }
 
 function getRate(from, to) {
@@ -66,32 +36,31 @@ function getRate(from, to) {
 }
 
 window.onload = function() {
-    let conv_inp = document.getElementsByClassName('converter-input');
-    for (const inp of conv_inp) {
-        inp.addEventListener('keyup', function(e) {
-            this.value = fixAmount(this.value);
-        });
+    let conv_inputs = document.getElementsByClassName('converter-input');
 
-        inp.addEventListener('change', function(e) {
+    for (const inp of conv_inputs) {
+        inp.addEventListener('input', function(e) {
+            this.value = fixAmount(this.value);
+
             let from = document.getElementById('currency-from').querySelector('.currency-active');
             let to = document.getElementById('currency-to').querySelector('.currency-active');
 
             let from_val = from.innerText;
             let to_val = to.innerText;
 
-            let amount = this.value.replace(' ', '');
+            let amount = this.value.replaceAll(' ', '');
             amount = Number(amount);
-
-            if (amount % 1 == 0) this.value = fixAmount(String(amount));
 
             if (this.id == 'converter-from') {
                 let converter_to = document.getElementById('converter-to');
+
                 getRate(from_val, to_val)
                 .then((data) => {
                     converter_to.value = fixAmount(String(amount * data));
                 });
             } else if (this.id == 'converter-to') {
                 let converter_from = document.getElementById('converter-from');
+
                 getRate(to_val, from_val)
                 .then((data) => {
                     converter_from.value = fixAmount(String(amount * data));
@@ -105,7 +74,6 @@ window.onload = function() {
         currency.addEventListener('click', function(e) {
             let active_currency = this.parentNode.querySelector('.currency-active');
             active_currency.classList.remove('currency-active');
-            
             this.classList.add('currency-active')
 
             let currency_info_from = document.getElementById('currency-info-from');
@@ -121,6 +89,7 @@ window.onload = function() {
             amount = Number(amount);
 
             let converter_to = document.getElementById('converter-to');
+
             getRate(from_val, to_val)
             .then((data) => {
                 currency_info_from.innerText = `1 ${ from_val } = ${ fixAmount(String(data)) } ${ to_val }`;
