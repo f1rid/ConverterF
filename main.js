@@ -85,7 +85,7 @@ window.onload = function() {
             let from_val = from.innerText;
             let to_val = to.innerText;
 
-            let amount = document.getElementById('converter-from').value.replace(' ', '');
+            let amount = document.getElementById('converter-from').value.replaceAll(' ', '');
             amount = Number(amount);
 
             let converter_to = document.getElementById('converter-to');
